@@ -141,7 +141,7 @@ void descQueue (){
 void randomQueue (){
   srand(time(NULL));
   for (int i = 0; i < N; i++){
-    insert(rand() % 100 + 1);
+    insert(rand() % 100);
   }
 }
 
@@ -241,11 +241,6 @@ Node* mergeSort (Node **front, int *asign, int *comp){
 }
 
 Node* sortedMerge (Node *a, Node *b, int *asign, int *comp){
-
-  printf("A = \n");
-    display(a);
-  printf("B = \n");
-    display(b);
  Node *result = NULL;
 
  if (a == NULL){
@@ -308,7 +303,6 @@ Node* copy (Node *start1){
   while (start1 != NULL){
     struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
     if(start1==NULL) return temp;
-    printf("DATA = %d\n", start1->data);
     temp->data = start1->data;
     temp->next = copy(start1->next);
 
