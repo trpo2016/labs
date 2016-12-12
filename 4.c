@@ -20,7 +20,7 @@ void dropQueue();
 void ascQueue();
 void descQueue();
 void randomQueue();
-void checkSum(Node *list);
+void checkSum(Node *front);
 void seriesCalc();
 void display(Node *front);
 void frontBackSplit(Node *source, Node **frontRef, Node **backRef);
@@ -166,7 +166,7 @@ void seriesCalc (){
   printf("\nSeries = %d\n", series);
 }
 
-void checkSum (){
+void checkSum (Node *front){
   if(front == NULL)
     printf("\nQueue is Empty!!!\n");
 
