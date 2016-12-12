@@ -64,6 +64,7 @@ int main() {
         newFront = mergeSort(&newFront, &asign, &comp);
         printf("Assigns = %d\n", asign);
         printf("Comparisons = %d\n", comp);
+        checkSum(newFront);
         display(newFront);
 
         break;
@@ -73,6 +74,7 @@ int main() {
         Node *newFront = copy(front);
         Node *radixSorted = radixSort(newFront, 10, 2, &asign);
         printf("Assigns = %d\n", asign);
+        checkSum(newFront);
         display(radixSorted);
 
         break;
@@ -173,7 +175,7 @@ void checkSum (Node *front){
   struct Node *temp = front;
   int sum = 0;
 
-  while (temp->next != NULL){
+  while (temp != NULL){
     sum += temp->data;
     temp = temp->next;
   }
