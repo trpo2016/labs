@@ -72,7 +72,7 @@ int main() {
       case 11: {
         int asign = 0;
         Node *newFront = copy(front);
-        Node *radixSorted = radixSort(newFront, 10, 2, &asign);
+        Node *radixSorted = radixSort(newFront, 10, 5, &asign);
         printf("Assigns = %d\n", asign);
         checkSum(newFront);
         display(radixSorted);
@@ -143,7 +143,7 @@ void descQueue (){
 void randomQueue (){
   srand(time(NULL));
   for (int i = 0; i < N; i++){
-    insert(rand() % 100);
+    insert(rand() % 65535);
   }
 }
 
@@ -275,7 +275,7 @@ Node* radixSort (Node *list, int base, int rounds, int *asign){
 	for (int j = 0; j < rounds; j++){
 		//Place numbers into buckets.
 		while(list != NULL){
-				*asign+=1;
+				*asign += 1;
 				next				 = list->next;
 				list->next	 = bucket[(list->data/n) % base];
 				bucket[(list->data / n) % base] = list;
@@ -285,8 +285,9 @@ Node* radixSort (Node *list, int base, int rounds, int *asign){
 
 		//Rebuild list
 		for (int i = base; i >= 0; i--){
+			if(bucket[i] != NULL) *asign += 1;
+      // *asign += 1;
 			while (bucket[i] != NULL){
-				*asign+=1;
 				temp		 = bucket[i]->next;
 				bucket[i]->next = list;
 			  list		 = bucket[i];
@@ -296,7 +297,7 @@ Node* radixSort (Node *list, int base, int rounds, int *asign){
 		}
 		n *=10;
 	}
-  checkSum(list);
+  // checkSum(list);
 
 	return list;
 }
