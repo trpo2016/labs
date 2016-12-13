@@ -270,7 +270,10 @@ Node* radixSort (Node *list, int base, int rounds, int *asign){
 	int n = 1;
 	Node **bucket, *next, *temp;
 	// Dyamic bucket array
-	bucket = malloc(sizeof(*bucket) * base);
+	bucket = malloc(sizeof(*bucket) * base * sizeof(int));
+
+  for (int i = 0; i<=base; i++)
+    bucket[i]=NULL;
 
 	for (int j = 0; j < rounds; j++){
 		//Place numbers into buckets.
@@ -286,7 +289,6 @@ Node* radixSort (Node *list, int base, int rounds, int *asign){
 		//Rebuild list
 		for (int i = base; i >= 0; i--){
 			if(bucket[i] != NULL) *asign += 1;
-      // *asign += 1;
 			while (bucket[i] != NULL){
 				temp		 = bucket[i]->next;
 				bucket[i]->next = list;
@@ -297,7 +299,7 @@ Node* radixSort (Node *list, int base, int rounds, int *asign){
 		}
 		n *=10;
 	}
-  // checkSum(list);
+  checkSum(list);
 
 	return list;
 }
