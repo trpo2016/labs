@@ -10,7 +10,7 @@ typedef struct Node{
    struct Node *next;
 } Node;
 
-int N = 20;
+int N = 10;
 struct Node *front = NULL;
 struct Node *rear = NULL;
 
@@ -40,7 +40,7 @@ int main() {
  while(1){
     printf("\n:: N = %d ::\n", N);
     printf("\n****** MENU ******\n");
-    printf("1. Insert\n2. Delete\n3. Display\n4. Fill with ascending\n5. Fill with descending\n6. Fill with random\n7. Print Checksum\n8. Drop Queue\n9. Calculate Series\n10. Merge-Sort\n11. Radix-Sort\n12. Change N\n0. Exit\n");
+    printf("1. Insert\n2. Delete\n3. Display\n4. Fill with ascending\n5. Fill with descending\n6. Fill with random\n7. Print Checksum\n8. Drop Queue\n9. Calculate Series\n10. Merge-Sort\n11. Radix-Sort\n12. Change N\n13. Sort original list\n0. Exit\n");
     printf("Enter your choice: ");
     scanf("%d",&choice);
 
@@ -72,10 +72,10 @@ int main() {
       case 11: {
         int asign = 0;
         Node *newFront = copy(front);
-        Node *radixSorted = radixSort(newFront, 10, 5, &asign);
+        newFront = radixSort(newFront, 10, 5, &asign);
         printf("Assigns = %d\n", asign);
         checkSum(newFront);
-        display(radixSorted);
+        display(newFront);
 
         break;
      }
@@ -86,6 +86,15 @@ int main() {
        changeN(&N, newN);
 
        break;
+     }
+
+     case 13: {
+      int asign = 0, comp = 0;
+      front = mergeSort(&front, &asign, &comp);
+      printf("Sorted original linked-list: \n");
+      display(front);
+
+      break;
      }
 
       case 0: exit(0);
@@ -278,12 +287,12 @@ Node* radixSort (Node *list, int base, int rounds, int *asign){
 	for (int j = 0; j < rounds; j++){
 		//Place numbers into buckets.
 		while(list != NULL){
-				*asign += 1;
-				next				 = list->next;
-				list->next	 = bucket[(list->data/n) % base];
-				bucket[(list->data / n) % base] = list;
-				list				 = list->next;
-				list				 = next;
+  		*asign += 1;
+  		next				 = list->next;
+  		list->next	 = bucket[(list->data/n) % base];
+  		bucket[(list->data / n) % base] = list;
+  		list				 = list->next;
+  		list				 = next;
 		}
 
 		//Rebuild list
@@ -299,7 +308,6 @@ Node* radixSort (Node *list, int base, int rounds, int *asign){
 		}
 		n *=10;
 	}
-  checkSum(list);
 
 	return list;
 }
