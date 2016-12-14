@@ -2,7 +2,6 @@ CC = gcc
 // CFLAGS = -g -Wall
 CFLAGS = -Wall
 BUILD_DIR = "./build/"
-mkdir -p ${BUILD_DIR}
 
 1:
 	$(CC) $(CFLAGS) -o "${BUILD_DIR}lab_1" "./1.c"
