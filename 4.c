@@ -296,7 +296,8 @@ Node* radixSort (Node *list, int base, int rounds, int *asign){
 		}
 
 		//Rebuild list
-		for (int i = base; i >= 0; i--){
+    int i = base - 1;
+		for (i; i >= 0; i--){
 			if(bucket[i] != NULL) *asign += 1;
 			while (bucket[i] != NULL){
 				temp		 = bucket[i]->next;
